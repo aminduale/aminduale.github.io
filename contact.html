@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kenya Heritage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="landmarks.html">Landmarks</a>
+            <a href="contact.html">Contact</a>
+            <a href="map.html">Map</a>
+            <a href="facts.html">Facts</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>We’d love to hear from you!</h2>
+            <form id="contactForm" onsubmit="return validateContactForm()">
+                <label for="contactName">Name:</label>
+                <input type="text" id="contactName" name="contactName" required minlength="2" placeholder="Your name">
+                
+                <label for="contactEmail">Email:</label>
+                <input type="email" id="contactEmail" name="contactEmail" required placeholder="Your email">
+                
+                <label for="reason">Reason for Contact:</label>
+                <select id="reason" name="reason" required>
+                    <option value="">Select a reason</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="inquiry">Inquiry</option>
+                    <option value="experience">Share an Experience</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required minlength="10" placeholder="Write your message here"></textarea>
+                
+                <div>
+                    <input type="checkbox" id="subscribe" name="subscribe">
+                    <label for="subscribe">Subscribe to our newsletter</label>
+                </div>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- JavaScript validation script -->
+    <script>
+        function validateContactForm() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const reason = document.getElementById('reason').value;
+            const message = document.getElementById('message').value;
+            
+            // Name validation
+            if (name.length < 2) {
+                alert("Name must be at least 2 characters long.");
+                return false;
+            }
+            
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            
+            // Reason validation
+            if (reason === "") {
+                alert("Please select a reason for contact.");
+                return false;
+            }
+
+            // Message validation
+            if (message.length < 10) {
+                alert("Message must be at least 10 characters long.");
+                return false;
+            }
+
+            // If all validations pass
+            alert("Thank you for reaching out! We’ll get back to you soon.");
+            return true;
+        }
+    </script>
+</body>
+</html>
